@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Answers to provided questions</title>
+</head>
+<body>
+<center>
+<h1>18BCE081</h1>
+{% if qa %}
+    <h1>Answers to Questions asked</h1>
+    {% for q, a in qa.items %}
+        <strong>{{ q }}</strong>
+        <br>
+        <strong><i>{{ a }}</i></strong>
+        <br><br>
+        {% if forloop.counter == 1 %}
+            I have truncated the answer itself to 20 characters<br>
+            {{ a | title | truncatechars:20 }}
+            <br><br>
+        {% endif %}
+
+        {% if forloop.counter == 2 %}
+            I have negatively sliced the answer itself<br>
+            {{ a | slice:"-5:" }}
+            <br><br>
+        {% endif %}
+
+        {% if forloop.counter == 3 %}
+            Actual list of dictionary
+            <br>
+            {{ q3dict }}
+            <br>
+            here, i have sorted based on age
+            <br>
+            {{ q3dict | dictsortreversed:'age' }}
+            <br><br>
+        {% endif %}
+
+        {% if forloop.counter == 4 %}
+            {{ file }} bytes
+            <br><br>
+        {% endif %}
+        ----------------------------------------------------------------------------------------------------------
+        <br><br>
+    {% endfor %}
+{% else %}
+    <form method="post" enctype="multipart/form-data" action="{% url 'index' %}">
+    {% csrf_token %}
+        Upload a file for testing<br>
+        <input type="file" name="uploaded_file">
+        <br><br>
+        <input type="submit">
+    </form>
+
+{% endif %}
+</center>
+
+</body>
+</html>
