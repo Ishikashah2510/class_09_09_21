@@ -16,12 +16,14 @@
         <br><br>
         {% if forloop.counter == 1 %}
             I have truncated the answer itself to 20 characters<br>
+            Syntax : a | title | truncatechars:20<br><br>
             {{ a | title | truncatechars:20 }}
             <br><br>
         {% endif %}
 
         {% if forloop.counter == 2 %}
             I have negatively sliced the answer itself<br>
+            Syntax : a | slice:"-5:"<br>
             {{ a | slice:"-5:" }}
             <br><br>
         {% endif %}
@@ -32,6 +34,8 @@
             {{ q3dict }}
             <br>
             here, i have sorted based on age
+            <br>
+            Syntax : q3dict | dictsortreversed:'age'
             <br>
             {{ q3dict | dictsortreversed:'age' }}
             <br><br>
